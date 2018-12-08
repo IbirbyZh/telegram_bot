@@ -11,4 +11,7 @@ include_directories(../weather_client)
 
 add_library(telegram_bot bot.cpp)
 
-target_link_libraries(telegram_bot weather_client)
+target_link_libraries(telegram_bot
+        stdc++fs
+        PocoNet PocoNetSSL PocoFoundation PocoJSON
+        weather_client)

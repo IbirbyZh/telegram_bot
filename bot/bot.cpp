@@ -55,6 +55,19 @@ bool Bot::ProcessMessage(const TGClient::Message &message) {
         message_text << "/weather to get current weather in Moscow\n";
         message_text << "/random to recive random number\n";
         SendMessage(message.chat_id, message_text.str());
+    } else if (message.text.substr(0, 8) == "/weather") {
+        std::stringstream message_in_text(message.text);
+        std::string s;
+        message_in_text >> s;
+        double lon, lat;
+        message_in_text >> lon >> lat;
+
+        auto weather = weather_client_.GetWeather(lon, lat);
+        std::stringstream message_text(message.text);
+        message_text << "Winter Is Coming\n";
+        message_text << "Now: " << weather.temp << "\n";
+        message_text << "Feels like: " << weather.feels_like << "\n";
+        SendMessage(message.chat_id, message_text.str());
     }
     return true;
 }
