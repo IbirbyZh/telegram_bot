@@ -4,7 +4,7 @@ Project for MIPT net course
 ## Dependencies
 
 * Ubuntu:
-    * cmake TODO
+    * cmake `sudo apt-get install cmake`
     * gcc TODO
     * Poco `sudo apt-get install libpoco-dev`
 * MacOS:
