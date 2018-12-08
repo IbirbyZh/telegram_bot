@@ -8,6 +8,7 @@ endif ()
 
 include_directories(../bot)
 include_directories(../client)
+include_directories(../weather_client)
 
 add_executable(run_bot main.cpp)
 

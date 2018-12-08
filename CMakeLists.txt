@@ -15,5 +15,6 @@ if (NOT Poco_FOUND)
 endif()
 
 add_subdirectory(client)
+add_subdirectory(weather_client)
 add_subdirectory(bot)
 add_subdirectory(bot_executable)

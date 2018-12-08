@@ -6,9 +6,4 @@ if (APPLE)
     include_directories(/usr/local/opt/openssl/include)
 endif ()
 
-include_directories(../client)
-include_directories(../weather_client)
-
-add_library(telegram_bot bot.cpp)
-
-target_link_libraries(telegram_bot weather_client)
+add_library(weather_client weather_client.cpp)

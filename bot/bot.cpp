@@ -2,11 +2,13 @@
 
 #include "bot.h"
 
-Bot::Bot(const std::string &host, const std::string &token, const std::string &state_file)
+Bot::Bot(const std::string &host, const std::string &token, const std::string &state_file,
+         const std::string &weather_host, const std::string &weather_token)
     : state_(),
       generator_(42),
       distribution_(0, 10),
       client_(host, token),
+      weather_client_(weather_host, weather_token),
       state_file_(state_file.data()) {
 }
 
@@ -37,7 +39,12 @@ bool Bot::ProcessMessage(const TGClient::Message &message) {
     if (message.text == "/random") {
         SendMessage(message.chat_id, std::to_string(distribution_(generator_)));
     } else if (message.text == "/weather") {
-        SendMessage(message.chat_id, "Winter Is Coming");
+        std::stringstream message_text;
+        auto weather =weather_client_.GetWeather();
+        message_text << "Winter Is Coming\n";
+        message_text << "Now: " << weather.temp << "\n";
+        message_text << "Feels like: " << weather.feels_like << "\n";
+        SendMessage(message.chat_id, message_text.str());
     } else if (message.text == "/styleguide") {
         SendMessage(message.chat_id,
                     "Я бы пошутил на тему ревью, но я пока не до конца осоздал что это.\n"
