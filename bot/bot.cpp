@@ -40,19 +40,21 @@ bool Bot::ProcessMessage(const TGClient::Message &message) {
         SendMessage(message.chat_id, std::to_string(distribution_(generator_)));
     } else if (message.text == "/weather") {
         std::stringstream message_text;
-        auto weather =weather_client_.GetWeather();
+        auto weather = weather_client_.GetWeather();
         message_text << "Winter Is Coming\n";
         message_text << "Now: " << weather.temp << "\n";
         message_text << "Feels like: " << weather.feels_like << "\n";
         SendMessage(message.chat_id, message_text.str());
-    } else if (message.text == "/styleguide") {
-        SendMessage(message.chat_id,
-                    "Я бы пошутил на тему ревью, но я пока не до конца осоздал что это.\n"
-                    "Я до сих пор не прошел ни одно...");
     } else if (message.text == "/stop") {
         return false;
     } else if (message.text == "/crash") {
         abort();
+    } else if (message.text == "/help" || message.text == "/start") {
+        std::stringstream message_text;
+        message_text << "Source code: http://github.com/IbirbyZh/telegram_bot\n";
+        message_text << "/weather to get current weather in Moscow\n";
+        message_text << "/random to recive random number\n";
+        SendMessage(message.chat_id, message_text.str());
     }
     return true;
 }
