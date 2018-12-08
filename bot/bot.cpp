@@ -53,6 +53,7 @@ bool Bot::ProcessMessage(const TGClient::Message &message) {
         std::stringstream message_text;
         message_text << "Source code: http://github.com/IbirbyZh/telegram_bot\n";
         message_text << "/weather to get current weather in Moscow\n";
+        message_text << "/weather lon lat to get current weather in (lon, lat)\n";
         message_text << "/random to recive random number\n";
         SendMessage(message.chat_id, message_text.str());
     } else if (message.text.substr(0, 8) == "/weather") {
