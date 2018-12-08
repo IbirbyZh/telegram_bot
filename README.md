@@ -11,4 +11,3 @@ Project for MIPT net course
     * cmake `brew install cmake`
     * gcc `brew install gcc`
     * Poco `brew install poco --build-from-source --cc=gcc-8`
-
